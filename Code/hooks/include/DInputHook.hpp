@@ -1,6 +1,5 @@
 #pragma once
 
-#include <TiltedCore/Signal.hpp>
 #include <TiltedCore/Stl.hpp>
 
 namespace TiltedPhoques
@@ -21,8 +20,6 @@ namespace TiltedPhoques
         static DInputHook& Get() noexcept;
 
         void Update() const noexcept;
-
-        Signal<void(unsigned long)> OnKeyPress;
 
     private:
 

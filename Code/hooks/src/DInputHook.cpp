@@ -98,14 +98,9 @@ namespace TiltedPhoques
         {
             for (DWORD i = 0; i < *outDataLen; ++i)
             {
-                if (outData[i].dwData & 0x80)
+                if (input.IsToggleKey(outData[i].dwOfs) && outData[i].dwData & 0x80)
                 {
-                    if (input.IsToggleKey(outData[i].dwOfs))
-                    {
-                        input.SetEnabled(true);
-                    }
-
-                    input.OnKeyPress.Emit(outData[i].dwOfs);
+                    DInputHook::Get().SetEnabled(true);
                 }
             }
         }
@@ -188,6 +183,7 @@ namespace TiltedPhoques
 
     DInputHook::DInputHook() noexcept
     {
+        SetToggleKeys({ DIK_F2, DIK_RCONTROL });
     }
 
     void DInputHook::SetToggleKeys(std::initializer_list<unsigned long> aKeys) noexcept
