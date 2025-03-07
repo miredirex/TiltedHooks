@@ -158,7 +158,7 @@ namespace TiltedPhoques
 
     static HRESULT _stdcall HookDirectInput8Create(HINSTANCE instance, DWORD version, REFIID iid, LPVOID* out, LPUNKNOWN outer)
     {
-        EnforceOriginalFunctionPrologue();
+        //EnforceOriginalFunctionPrologue();
 
         IDirectInput8A* pDirectInput = nullptr;
         const auto result = RealDirectInput8Create(instance, version, iid, reinterpret_cast<LPVOID*>(&pDirectInput), outer);
@@ -178,7 +178,7 @@ namespace TiltedPhoques
     {
         TP_HOOK_IAT(DirectInput8Create, "dinput8.dll");
         // Store original prologue to restore later
-        std::memcpy(s_realDirectInput8CreatePrologue.data(), GetOriginalFunctionPrologue(), kDirectInput8CreatePrologueSize);
+        //std::memcpy(s_realDirectInput8CreatePrologue.data(), GetOriginalFunctionPrologue(), kDirectInput8CreatePrologueSize);
     }
 
     DInputHook::DInputHook() noexcept
